@@ -6,6 +6,8 @@ sys.path.insert(0, os.path.abspath("app"))
 
 from app import app
 
+app.config["TESTING"] = True
+
 
 def test_home_page():
     with patch("routes.Task") as mock_task:

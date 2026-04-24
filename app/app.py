@@ -7,10 +7,7 @@ import time
 def create_app():
     app = Flask(__name__)
 
-    # подключаем базу данных
     init_db(app)
-
-    # подключаем маршруты
     app.register_blueprint(bp)
 
     return app
@@ -27,6 +24,7 @@ def wait_for_db():
             return
         except Exception:
             time.sleep(2)
+
     raise RuntimeError("База данных не стала доступна вовремя")
 
 
