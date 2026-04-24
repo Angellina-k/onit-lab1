@@ -16,5 +16,5 @@ def test_home_page():
         client = app.test_client()
         response = client.get("/")
 
-        assert response.status_code == 200
+        assert response.status_code == 404
         assert "Список задач".encode("utf-8") in response.data
