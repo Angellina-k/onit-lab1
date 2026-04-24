@@ -30,3 +30,6 @@ jobs:
         run: |
           export DATABASE_URL=sqlite:///test.db
           pytest
+      
+      - name: Build Docker image
+        run:  docker build -t onit-lab-app .
