@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 500px;
+            margin: 50px auto;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            margin-left: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Список задач</h1>
+
+    <!-- форма добавления -->
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Новая задача">
+        <button type="submit">Добавить</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <span style="{% if task.completed %}text-decoration: line-through; color: gray;{% endif %}">
+    {{ task.title }}
+</span>
+
+                {% if not task.completed %}
+                    <a href="/complete/{{ task.id }}">✔</a>
+                {% else %}
+                    (выполнено)
+                {% endif %}
+
+                <a href="/delete/{{ task.id }}">❌</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
