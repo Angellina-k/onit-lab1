@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, request, redirect
 from models import Task
 from database import db
@@ -9,7 +10,8 @@ bp = Blueprint("main", __name__)
 @bp.route("/")
 def index():
     tasks = Task.query.all()
-    return render_template("index.html", tasks=tasks)
+    node_name = os.getenv("NODE_NAME", "Локальная нода")
+    return render_template("index.html", tasks=tasks, node_name=node_name)
 
 
 # 📌 CREATE — добавить задачу
